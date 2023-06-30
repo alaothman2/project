@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+.navbar {
+  backdrop-filter: blur(6px);
+  background-color: rgba(242,242,242,0.2);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  
+}
+.item {
+  text-decoration: none;
+  color: black;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-right: 15px;
+  transition: all 0.4s;
+  font-family: "Pacifico", cursive;
+}
+.item:hover {
+  color: #8e8d8c;
+}
+.logo {
+  height: 60px;
+  width: 80px;
+  border: 2px solid #ffffff;
+  border-radius: 50px;
+}
+
+.btnlogup {
+  outline: none;
+  border: none;
+  text-decoration: none;
+  background-color: #e6c897;
+  margin-left: 25px;
+  margin-right: 25px;
+  width: 210px;
+  border-radius: 20px;
+  color: white;
+  margin-top: 20px;
+  font-family: "Pacifico", cursive;
+  font-weight: 500;
+  height: 40px;
+  padding: auto;
+  padding-top: 7px;
+}
+.btnlogin {
+  outline: none;
+  border: none;
+  text-decoration: none;
+  background-color:#e6c897;
+  margin-left: 25px;
+  margin-right: 25px;
+  width: 210px;
+  border-radius: 20px;
+  color: white;
+  margin-top: 10px;
+  font-family: "Pacifico", cursive;
+  font-weight: 500;
+  height: 40px;
+  padding: auto;
+  padding-top: 7px;
+}
+.textDROP {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-family: "Caveat", cursive;
+}
+.linedrop {
+  width: 220px;
+  margin: 10px auto;
+}
+.dropdown-menu {
+  width: 270px;
+  height: 190px;
+}
+.dropdown-menu[data-bs-popper] {
+  left: -220px;
+}
+.styleIcon {
+  border: none;
+  text-decoration: none;
+  outline: none;
+  background: transparent;
+}
+.itemDrop{
+  font-family: "Pacifico", cursive;
+  font-weight: 500;
+  
+}
+
+@media (max-width: 768px) {
+    .navbar .container .navbar-collapse{
+        order: 4;
+    }
+    .navbar .container .togel-log{
+        order: 3;
+    }
+}

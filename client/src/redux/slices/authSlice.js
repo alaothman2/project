@@ -7,20 +7,24 @@ const initialState = {
   isError: false,
   isSuccess: false,
   isLogin: false,
-  userUpdated : false,
+  userUpdated: false,
+  isSent: false,
+  resetPassword: false,
+  userID: "",
   userRole: "",
   message: "",
 };
-
+const apiUrl = "http://localhost:4000";
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
   async (user, { rejectWithValue }) => {
     try {
-      const res = await axios.post("http://localhost:4000/user/register", {
+      const res = await axios.post(`${apiUrl}/user/register`, {
         username: user.username,
         email: user.email,
         password: user.password,
-        Phone : user.phone
+        Phone: user.Phone,
+        birthday: user.birthday,
       });
       localStorage.setItem("token", res.data.token);
       return res.data;
@@ -34,7 +38,7 @@ export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (user, { rejectWithValue }) => {
     try {
-      const res = await axios.post("http://localhost:4000/user/login", {
+      const res = await axios.post(`${apiUrl}/user/login`, {
         email: user.email,
         password: user.password,
       });
@@ -50,7 +54,7 @@ export const getUser = createAsyncThunk(
   "auth/getUser",
   async (id, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`http://localhost:4000/user/profile`, {
+      const res = await axios.get(`${apiUrl}/user/profile`, {
         headers: {
           "x-auth-token": localStorage.getItem("token"),
         },
@@ -62,20 +66,81 @@ export const getUser = createAsyncThunk(
     }
   }
 );
-export const updateUser = createAsyncThunk("auth/UpdateUser",
-async (user, { rejectWithValue }) => {
-  try {
-    const res = await axios.put(`http://localhost:4000/user/update-profil/${user.id}`, {
-      username: user.username,
-      email: user.email,
-      password: user.password,
-    });
-    return res.data;
-  } catch (error) {
-    console.log(error);
-    return rejectWithValue(error.response.data.message);
+export const updateUser = createAsyncThunk(
+  "auth/UpdateUser",
+  async (user, { rejectWithValue }) => {
+    try {
+      const res = await axios.put(
+        `${apiUrl}/user/update-profil`,
+        {
+          username: user.username,
+          email: user.email,
+          password: user.password,
+          Phone: user.Phone,
+          birthday: user.birthday,
+        },
+        {
+          headers: {
+            "x-auth-token": localStorage.getItem("token"),
+          },
+        }
+      );
+      return res.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.response.data.message);
+    }
   }
-})
+);
+export const forgetPassword = createAsyncThunk(
+  "auth/forgetPasswod",
+  async (email, { rejectWithValue }) => {
+    try {
+      const res = await axios.post(`${apiUrl}/user/forget-password`, email);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+export const confirmCode = createAsyncThunk(
+  "auth/confirmCode",
+  async ({ id, code }, { rejectWithValue }) => {
+    try {
+      const res = await axios.post(`${apiUrl}/user/${id}/validate-code`, {
+        code: code,
+      });
+      localStorage.setItem("token", res.data);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+export const updatePassword = createAsyncThunk(
+  "auth/updatePassword",
+  async (user, { rejectWithValue }) => {
+    try {
+      const res = await axios.put(
+        `${apiUrl}/user/update-password`,
+        {
+          password: user.password,
+        },
+        {
+          headers: {
+            "x-auth-token": localStorage.getItem("token"),
+          },
+        }
+      );
+      return res.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -154,7 +219,7 @@ const authSlice = createSlice({
           message: action.payload,
         };
       })
-      .addCase(getUser.pending, (state, action) => {
+      .addCase(getUser.pending, (state) => {
         return {
           ...state,
           isLoding: true,
@@ -179,14 +244,13 @@ const authSlice = createSlice({
           isLoding: false,
           isError: true,
           isSuccess: false,
-          message: action.payload,
         };
       })
-      .addCase(updateUser.pending, (state, action) => {
+      .addCase(updateUser.pending, (state) => {
         return {
           ...state,
           isLoding: true,
-          userUpdated : false,
+          userUpdated: false,
           message: "",
         };
       })
@@ -195,8 +259,8 @@ const authSlice = createSlice({
           ...state,
           isLoding: false,
           isError: false,
-          userUpdated : true,
-          
+          userUpdated: true,
+          user: action.payload.user,
         };
       })
       .addCase(updateUser.rejected, (state, action) => {
@@ -204,7 +268,88 @@ const authSlice = createSlice({
           ...state,
           isLoding: false,
           isError: true,
-          userUpdated : false,
+          userUpdated: false,
+          message: action.payload,
+        };
+      })
+      .addCase(forgetPassword.pending, (state) => {
+        return {
+          ...state,
+          isLoding: true,
+          isError: false,
+          isSuccess: false,
+          message: "",
+        };
+      })
+      .addCase(forgetPassword.fulfilled, (state, action) => {
+        return {
+          ...state,
+          isLoding: false,
+          isError: false,
+          isSent: true,
+          userID: action.payload.userID,
+          message: action.payload.message,
+        };
+      })
+      .addCase(forgetPassword.rejected, (state, action) => {
+        return {
+          ...state,
+          isLoding: false,
+          isError: true,
+          message: action.payload,
+        };
+      })
+      .addCase(confirmCode.pending, (state) => {
+        return {
+          ...state,
+          isLoding: true,
+          isError: false,
+          isSuccess: false,
+          message: "",
+        };
+      })
+      .addCase(confirmCode.fulfilled, (state, action) => {
+        return {
+          ...state,
+          isLoding: false,
+          isError: false,
+          resetPassword: true,
+          token: action.payload,
+        };
+      })
+      .addCase(confirmCode.rejected, (state, action) => {
+        return {
+          ...state,
+          isLoding: false,
+          isError: true,
+          message: action.payload,
+        };
+      })
+      .addCase(updatePassword.pending, (state) => {
+        return {
+          ...state,
+          isLoding: true,
+          isError: false,
+          isSuccess: false,
+          message: "",
+        };
+      })
+      .addCase(updatePassword.fulfilled, (state, action) => {
+        return {
+          ...state,
+          isLoding: false,
+          isError: false,
+          resetPassword: true,
+          userUpdated: true,
+          userID: "",
+          message: action.payload.message,
+        };
+      })
+      .addCase(updatePassword.rejected, (state, action) => {
+        return {
+          ...state,
+          isLoding: false,
+          isError: true,
           message: action.payload,
         };
       });

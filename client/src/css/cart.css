@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+.container-cart {
+  width: 80vw;
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.header-cart {
+  width: 100%;
+  text-align: start;
+  margin: auto;
+  margin-left: 30px;
+}
+.header-cart h1 {
+  font-weight: 400;
+  font-size: 26px;
+  text-transform: uppercase;
+  color: inherit;
+  font-family: "Dancing Script", cursive;
+}
+.header-cart p {
+  font-family: "Dancing Script", cursive;
+  color: grey;
+  font-size: 19px;
+  line-height: 20px;
+  margin-bottom: 50px;
+}
+.products-cart {
+  width: 100%;
+  align-self: center;
+  height:70%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+.product-cart {
+  position: relative;
+  background-color: var(--sectionBack);
+  width: 350px;
+  height: auto;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 20px 40px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+.product-cart:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.image-cart {
+  width: 100%;
+  height:100%;
+  display: grid;
+  place-content: center;
+}
+.image-cart img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.namePrice {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.namePrice h3 {
+  font-size: 2em;
+  text-transform: capitalize;
+  color: black;
+  font-family: 'Kablammo', cursive;
+}
+.namePrice span {
+  font-size: 1.5em;
+  color: rgb(192, 188, 136);
+}
+.namePrice p {
+ 
+  font-size: 22px;
+  color: grey;
+}
+.desc {
+  font-family: 'Anton', sans-serif;
+  color: grey;
+}
+
+.bay {
+  bottom: 20px;
+  right: 20px;
+  margin-top: 10px;
+}
+.bay .bynow{
+  padding: 10px 20px;
+  border-radius: 7px;
+  border: none;
+  background-color: rgb(214, 35, 0);
+  color: white;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: 0.5s;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  text-decoration: none;
+}
+.bay .bynow:hover {
+  transform: scale(1.1);
+}
+.serachbarCart{
+  width:230px;
+  padding: 8px 20px 8px 45px;
+  border: #807f7f solid 2px;
+  font-size: 18px;
+  border-radius: 25px;
+  background-position: 2% 50%;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-image: url(../images/search.png);
+  background-color: transparent;
+  transition: 0.5s all ease-in-out;
+  filter: brightness(170%);
+}
+.serachbarCart:focus ,.serachbarCart:not(:placeholder-shown){
+  width: 350px;
+  background-color: #fff;
+  filter: brightness(100%);
+}

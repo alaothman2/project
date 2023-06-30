@@ -1,65 +1,121 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
-import UpdateProfile from "./UpdateProfile";
 
+import { BiUserCircle } from "react-icons/bi";
+import { updateUser } from "../redux/slices/authSlice";
+import "../css/Profile.css";
 function Profile() {
-  const [isUpdate,setIsUpdate] = useState(false);
-  console.log(isUpdate)
   const auth = useSelector((state) => state.auth);
-  return (
-    <div className="container">
-      <div className="container py-5 h-100">
-        <div className="row d-flex justify-content-center align-items-center h-100">
-          <div className="col col-lg-6 mb-4 mb-lg-0">
-            <div className="card mb-3">
-              <div className="row g-0">
-                <div className="col-md-4 gradient-custom text-center text-white">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2012/04/13/21/07/user-33638_640.png"
-                    alt="Avatar"
-                    className="img-fluid my-5"
-                  />
-                  <button
-                    type="button"
-                    className="btn btn-primary mb-5"
-                    onClick={() =>( setIsUpdate(true))}
-                  >
-                    edit your profile
-                  </button>
-                </div>
-                <div className="col-md-8">
-                  <div className="card-body p-4">
-                    <h6>Your profile :</h6>
+  const dispatch = useDispatch();
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [Phone, setPhone] = useState("");
+  const [birthday, setBirthday] = useState("");
+ 
 
-                    <div className="row pt-1">
-                      <div className="col-6 mb-3">
-                        <h6>Name</h6>
-                        <p className="text-muted">{auth.user.username}</p>
-                      </div>
-                      <div className="col-6 mb-3">
-                        <h6>phone</h6>
-                        <p className="text-muted">123 456 789</p>
-                      </div>
+  const id = auth.user?._id;
+  const user = { id, username, email, password,birthday,Phone };
+  const updatehandler = (e) => {
+    e.preventDefault();
+    dispatch(updateUser(user));
+  };
+  return (
+    <div className="profil-back">
+      <section className="py-5 my-5">
+        <div className="container">
+          <h1 className="mb-5">Account Settings</h1>
+          <div className="bg-white shadow rounded-lg d-block d-sm-flex">
+            <div className="profile-tab-nav border-right">
+              <div className="p-4">
+                <h1 className="text-center ">
+                  <BiUserCircle />
+                </h1>
+                <h4 className="text-center font">{auth.user?.username}</h4>
+                <h2 className="text-center font">{auth.user?.email}</h2>
+                <h2 className="text-center font">{auth.user?.Phone}</h2>
+                <h2 className="text-center font">{auth.user?.birthday}</h2>
+              </div>
+            </div>
+            <div className="tab-content p-4 p-md-5" id="v-pills-tabContent">
+              <div
+                className="tab-pane fade show active"
+                id="account"
+                role="tabpanel"
+                aria-labelledby="account-tab"
+              >
+                <h3 className="mb-4">Account Settings</h3>
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Username</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        onChange={(e) => setUsername(e.target.value)}
+                      />
                     </div>
-                    <div className="row pt-1">
-                      <div className="col-6 mb-3">
-                        <h6>Email</h6>
-                        <p className="text-muted">{auth.user.email}</p>
-                      </div>
+                  </div>
+
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Email</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
                     </div>
-                    {isUpdate === true ? (
-                      <div>
-                         <UpdateProfile/>
-                      </div>
-                    ) : null}
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Phone number</label>
+                      <input type="text" className="form-control" onChange={(e) => setPhone(e.target.value)}  />
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Birthday</label>
+                      <input type="text" className="form-control" onChange={(e) => setBirthday(e.target.value)} />
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>password </label>
+                      <input
+                        type="password"
+                        className="form-control"
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Confirm password </label>
+                      <input
+                        type="password"
+                        className="form-control"
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                      />
+                    </div>
+
+                    <div>
+                      <button
+                        className="profilbtn"
+                        onClick={(e) => updatehandler(e)}
+                      >
+                        Update
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

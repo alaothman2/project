@@ -1,0 +1,23 @@
+.gg {
+    text-decoration: none;
+    border: none;
+}
+.sideBar-bt span:hover {
+    background-color: rgb(178, 176, 176);
+    color: aliceblue;
+}
+
+@media only screen and (max-width: 1000px){
+    .sideBar-bt span .name{
+        display: none;
+        
+    }
+    .sideBar-bt span{
+        box-sizing: none;
+        padding-left: 3px;
+        padding-right:3px;
+    }
+    .topofpage span{
+        display: none; 
+    }
+}

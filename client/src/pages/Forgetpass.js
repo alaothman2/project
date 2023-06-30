@@ -1,36 +1,82 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  confirmCode,
+  forgetPassword,
+  logout,
+  updatePassword,
+} from "../redux/slices/authSlice";
+import { useNavigate } from "react-router-dom";
+import "../css/forgetPass.css";
 function Forgetpass() {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
+  const [code, setCode] = useState(null);
+  const [err, seterr] = useState(false);
+  const [password, setPassword] = useState("");
+  const auth = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (auth.userUpdated) navigate("/login");
+  }, [auth.userUpdated]);
+  const sendCode = () => {
+    dispatch(forgetPassword({ email }));
+    seterr(true)
+  };
+  const confirmCodeEmail = () => {
+    dispatch(confirmCode({ id: auth.userID, code }));
+  };
+  const resetPassword = () => {
+    dispatch(updatePassword({ password }));
+    dispatch(logout());
+  };
   return (
-    <div>
-      <div className="container">
-        <div className="form-outline mb-4">
+    <div className=" mb-4  forget">
+      <p className="forget-parg">please enter your email : </p>
+      <input
+        className="input-forget"
+        type="email"
+        placeholder="Email"
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      {err ? (
+        <p className="alert alert-secondary forget-err mb-2">{auth.message}</p>
+      ) : null}
+      {!auth.isSent && (
+        <div>
+          <button className="forget-butt" onClick={sendCode}>
+            send email
+          </button>
+        </div>
+      )}
+
+      {auth.isSent && !auth.resetPassword && (
+        <div>
           <input
-            className="form-control"
-            type="email"
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
+            className="input-forget"
+            type="text"
+            placeholder="write the code"
+            onChange={(e) => setCode(+e.target.value)}
           />
+          <button className="forget-butt" onClick={confirmCodeEmail}>
+            send code
+          </button>
         </div>
-        <button></button>
-
-        <div className="login">
-          <h2>login</h2>
-          <div className="inputBx">
-            <input type="password" placeholder="new-password" />
-          </div>
-          <div className="inputBx">
-            <input type="password" placeholder="confirm-password" />
-          </div>
-
-          <div className="inputBx">
-            <Link to="/login">
-              <input type="submit" placeholder="confirmed" />
-            </Link>
-          </div>
+      )}
+      {auth.resetPassword && (
+        <div>
+          {" "}
+          <input
+            className="input-forget"
+            type="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button className="forget-butt" onClick={resetPassword}>
+            reset your password{" "}
+          </button>
         </div>
-      </div>
+      )}
     </div>
   );
 }

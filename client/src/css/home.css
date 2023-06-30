@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+.main {
+    background: url(../images/Design\ sans\ titre\ \(2\)_page-0001.jpg);
+    background-size:cover;
+    height:100vh;
+    width: 100%;
+}
+.main h1{
+    font-family: 'Righteous', cursive;
+}
+.child1{
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Kablammo', cursive;
+
+}
+.child2{
+    font-size: 18px;
+    font-weight: 500;
+    font-family: 'Tilt Prism', cursive;
+}
+.mbtn1{
+    height: 50px;
+    width: 25%;
+    outline: none;
+    border: none;
+    color: white;
+    background-color: #e6c897 ;
+    border-radius: 50px;
+    transition: all 0.4s;
+    font-family: 'Caveat', cursive;
+}
+.mbtn1:hover{
+    background-color: #e6cba0;
+}
+.mbtn2{
+    height: 50px;
+    width: 25%;
+    outline: none;
+    background-color: transparent;
+    color:  #e6c897;
+    border: 1px solid  #e6c897;
+    border-radius: 50px;
+    transition: all 0.4s;
+    font-family: 'Caveat', cursive;
+}
+.mbtn2:hover{
+    background-color: #e6c897;
+    color: white;
+    border: none;
+}
+.about {
+    background: url("../images/3.png");
+    background-size:cover;
+    height:100vh;
+    width: 100%;
+}
+.about h1{
+    font-family: 'Righteous', cursive;
+}
+.OurProduct{
+    background: url("../images/back2.png");
+    background-size:cover;
+    height:auto;
+    width: 100%;
+}
+.OurProduct h1 {
+    font-size: 3rem;
+    font-weight:400;
+    font-family: 'Comforter', cursive;
+
+}
+.OurProduct .card{
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+}
+.back{
+    
+    background-size:cover;
+    height:auto;
+    width: 100%;
+}
+
+.btnc{
+    height: 50px;
+    width: 120px;
+    outline: none;
+    border: none;
+    color: white;
+    background: #e6c897;
+    border-radius: 50px;
+    margin: 0 auto;
+    display: block;
+    transition: all 0,4s;
+}
+.btnc:hover{
+    outline: none;
+    border: 1px solid #e6c897 ;
+    color: #e6c897;
+    background: transparent;
+    border-radius: 50px;
+}
+.titleCard , .price {
+    color: #e6c897;
+}
+
+.img-product{
+    border-radius: 50px;
+    padding: 20px ;
+    height:200px;
+}
+.card-home{
+    border-radius: 50px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+    }
+.card-body-home{
+    padding:20px;
+    margin-top: 10px ;
+}
+.mbtn3{
+    text-decoration: none;
+    margin-top: 120px;
+    padding: 20px;
+    outline: none;
+    border: none;
+    color: white;
+    background-color: #e6c897 ;
+    border-radius: 50px;
+    transition: all 0.4s;
+    font-family: 'Caveat', cursive;
+}

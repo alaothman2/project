@@ -1,0 +1,42 @@
+.forget{
+    margin-top: 120px;
+    text-align: center;
+    height: 300px;
+    
+}
+.input-forget{
+    height: 45px;
+    width: 300px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    outline: none;
+    margin-bottom: 20px;
+    color: #40414a;
+}
+
+.forget-parg{
+    font-size: 24px;
+    font-weight: 500;
+    font-family: 'Kablammo', cursive;
+}
+.forget-butt{
+    padding: 10px 20px;
+  border-radius: 7px;
+  border: none;
+  background-color: rgb(0, 89, 214);
+  color: white;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: 0.5s;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  text-decoration: none;
+  
+}
+.forget-err{
+    width: 300px;
+    text-align: center;
+    margin: auto;
+}

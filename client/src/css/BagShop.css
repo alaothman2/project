@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+.bag {
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+.custom-img-size {
+  height: 60px;
+  width: 80px;
+}
+.name-prod {
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+}
+.price-prod {
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+}
+.itemCON {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+.topbag {
+  gap: 260px;
+}
+.clear {
+  color: red;
+  font-size: 30px;
+}
+.TOTAL {
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-size: 29px;
+}
+.TOTALPRICE {
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-size: 32px;
+  color: gray;
+}
+.orderbt {
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 7px;
+  border: none;
+  background-color: rgb(52, 91, 164);
+  color: white;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: 0.5s;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  text-decoration: none;
+}
+.orderbt:hover{
+    background-color: rgb(45, 63, 97);
+}
+

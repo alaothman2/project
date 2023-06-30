@@ -1,7 +1,7 @@
 const express = require("express");
 const connectDB = require("./config/conncetDB");
 const app = express();
-app.use(express.json());
+app.use(express.json({limit:"5mb"}));
 const cors = require("cors");
 app.use(cors());
 
@@ -10,6 +10,8 @@ app.use(cors());
 const userRoutes =  require("./routes/user") 
 app.use("/user", userRoutes);
 
+const productRoutes = require("./routes/product") 
+app.use("/product", productRoutes);
 
 
 

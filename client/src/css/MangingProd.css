@@ -1,0 +1,30 @@
+.delete{
+  
+  padding: 5px 16px;
+  border-radius: 7px;
+  border: none;
+  background-color: rgb(214, 35, 0);
+  color: white;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: 0.5s;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  text-decoration: none;
+}
+.edit {
+  
+  padding: 5px 20px;
+  border-radius: 7px;
+  border: none;
+  background-color: rgb(46, 107, 205);
+  color: white;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: 0.5s;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  text-decoration: none;
+}
